@@ -1,0 +1,16 @@
+name: Use GitHub App
+on:
+  workflow_dispatch:
+  push:
+    paths:
+    - .github/workflows/use-github-app.yaml
+
+jobs:
+  checkout-other-repo:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        token: ${{ github.token }}
+        repository: dmacollo/SpringSecurity
+      
