@@ -22,7 +22,6 @@ jobs:
         set -x
         echo "Token is : ${{ steps.get_workflow_token.outputs.jwt_token }}"
         curl -s -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ steps.get_workflow_token.outputs.jwt_token }}" https://api.github.com/repos/dmacollo/rewards-program/git/refs/heads/master | grep sha | cut -d'"' -f4
-        echo "SHA is : ${{ SHA }}"
         set +x
         
       
