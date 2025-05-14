@@ -9,8 +9,16 @@ jobs:
   checkout-other-repo:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: Get Token
+      id: get_workflow_token
+      uses: LexisNexis-GHA-Public/action-github-app-auth@v1
       with:
-        token: ${{ github.token }}
-        repository: dmacollo/SpringSecurity
+        app_id: ${{ secrets.APP_ID }}
+        base64_pem_key: ${{ secrets.APP_PRIVATE_KEY }}
+        
+    - name: Display Token
+      id: display_token
+      run: |
+        echo "Token is : ${{ steps.get_workflow_token.outputs.jwt_token }}"
+        
       
